@@ -1,2 +1,51 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+task_dict = {}
+
+def create_task(task_name, task_description):
+    task_dict[task_name] = {
+        'description':- task_description,
+        'status': 'Not Start'
+    }
+    print("task '{task_name}' created.")
+
+def update_task_status(task_name, new_status):
+    if task_name in task_dict:
+        task_dict[task_name]['status'] = new_status
+        print("task '{task_name}' updated with status:- {new_status}")
+    else:
+        print("task '{task_name}' not present in the  list.")
+
+def show_tasks():
+    if task_dict:
+        print("To-Do List:")
+        for task_name, task_info in task_dict.items():
+            print(f"task: {task_name}")
+            print(f"description: {task_info['description']}")
+            print(f"status: {task_info['status']}")
+            print()
+    else:
+        print("list is empty.")
+
+while True:
+    print("Options:-\n")
+    print("Enter 'create' to create a task")
+    print("Enter 'update' to update the status of a task")
+    print("Enter 'show' to display the list")
+    print("Enter 'exit' to end the program")
+
+    input_user = input(": ")
+
+    if input_user == 'create':
+        task_name = input("Enter the name of the task in the list:- ")
+        task_description = input("Enter the description of the task:- ")
+        create_task(task_name, task_description)
+    elif input_user == 'update':
+        task_name = input("Enter the task name for updation:- ")
+        new_status = input("Enter the new status:-")
+        update_task_status(task_name, new_status)
+    elif input_user  == 'show':
+        show_tasks()
+    elif input_user == 'exit':
+        break    
+    
+    else:
+        print("Invalid input by the user.")
